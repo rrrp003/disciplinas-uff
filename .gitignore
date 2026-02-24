@@ -1,0 +1,11 @@
+# Ignorar executáveis e arquivos objetos de C
+*.exe
+*.out
+*.o
+
+# Ignorar arquivos compilados de Java
+*.class
+*.jar
+
+# Ignorar arquivos de configuração do próprio VS Code (recomendado)
+.vscode/
