@@ -24,41 +24,6 @@ Noarv* inserir_versao_1 (Noarv *raiz, int num){
         return raiz;
     }
 }
-
-void inserir_versao_2 (Noarv **raiz, int num){
-    if (*raiz == NULL){
-        *raiz = malloc(sizeof(Noarv));
-        (*raiz)->valor = num;
-        (*raiz)->direita = NULL;
-        (*raiz)->esquerda = NULL;
-    }
-    else{
-        if (num < (*raiz)->valor){
-            inserir_versao_2(&((*raiz)->esquerda), num);
-        }
-        else{
-            inserir_versao_2(&((*raiz)->direita), num);
-        }
-    }
-}
-void inserir_versao_3(Noarv **raiz, int num){
-    Noarv *aux = *raiz;
-    while(aux){
-        if(num < aux->valor){
-            raiz = &aux->esquerda;
-        }
-        else
-            raiz = &aux->direita;
-        aux = *raiz;
-}
-    aux = malloc(sizeof(Noarv));
-    aux->valor = num;
-    aux->direita = NULL;
-    aux->esquerda = NULL;
-
-    *raiz = aux
-}
- 
 void imprimir_versao_1 (Noarv *raiz){
     if (raiz != NULL){
         printf("%d ", raiz->valor);
@@ -75,48 +40,33 @@ void imprimir_versao_2 (Noarv *raiz){
         imprimir_versao_2(raiz->direita);
     }
 }
-void liberar_arvore(Noarv *raiz){
-    if (raiz != NULL){
-        liberar_arvore(raiz->esquerda);
-        liberar_arvore(raiz->direita);
-        free(raiz);
-    }
-}
 int main (void){
     Noarv *raiz = NULL;
     
-    int opcao, valor;
+    int opcao;
     do{
-        printf("1 - Inserir_op1\n");
-        printf("2 - Inserir_op2\n");
-        printf("3 - Imprimir\n");
-        printf("4 - Sair\n");
+        printf("1 - Inserir\n");
+        printf("2 - Imprimir\n");
+        printf("3 - Sair\n");
         scanf("%d", &opcao);
         switch(opcao){
             case 1:
                 printf("Digite um numero: ");
-                scanf("%d", &valor);
-                raiz = inserir_versao_1(raiz, valor);
+                scanf("%d", &opcao);
+                raiz = inserir_versao_1(raiz, opcao);
                 break;
             case 2:
-                printf("Digite um numero: ");
-                scanf("%d", &valor);
-                inserir_versao_2(&raiz, valor);
-                break;
-            case 3:
                 imprimir_versao_1(raiz);
                 printf("\n");
                 imprimir_versao_2(raiz);
                 printf("\n");
                 break;
-            case 4:
+            case 3:
                 break;
             default:
                 printf("Opcao invalida!\n");
                 
         }
-    }while(opcao != 4);
-    liberar_arvore(raiz);
+    }while(opcao != 3);
     return 0;
 }
-
