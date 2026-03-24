@@ -18,4 +18,6 @@ void TAB_libera(TAB *a);
 
 TAB *TAB_busca(TAB *a, int elem);
 
+TAB *TAB_copia(TAB *a);
+
 int TAB_altura(TAB *a);

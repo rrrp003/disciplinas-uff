@@ -19,6 +19,11 @@ TAB *TAB_busca(TAB *a, int elem){
   return TAB_busca(a->dir, elem);
 }
 
+TAB *TAB_copia(TAB *a){
+  if(!a) return NULL;
+  return(TAB_cria(a->info, TAB_copia(a->esq), TAB_copia(a->esq)));
+}
+
 void TAB_imp_pre(TAB *a){
   if(a){
     printf("%d ", a->info);
@@ -78,4 +83,5 @@ int TAB_altura(TAB *a){
   if(!a) return -1;
   return maior(TAB_altura(a->esq), TAB_altura(a->dir)) + 1;
 }
+
 
