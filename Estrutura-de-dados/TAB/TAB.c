@@ -21,7 +21,18 @@ TAB *TAB_busca(TAB *a, int elem){
 
 TAB *TAB_copia(TAB *a){
   if(!a) return NULL;
-  return(TAB_cria(a->info, TAB_copia(a->esq), TAB_copia(a->esq)));
+  return(TAB_cria(a->info, TAB_copia(a->esq), TAB_copia(a->dir)));
+}
+
+TAB *TAB_espelho(TAB *a){
+    if(!a) return NULL;
+    return (TAB_cria(a->info, TAB_espelho(a->dir), TAB_espelho(a->esq)));
+}
+
+TAB *TAB_maior(TAB *a){
+  
+}
+TAB *TAB_menor(TAB *a){
 }
 
 void TAB_imp_pre(TAB *a){
