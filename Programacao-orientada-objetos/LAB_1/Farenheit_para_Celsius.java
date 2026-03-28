@@ -1,9 +1,9 @@
-package Lista1;
+package LAB_1;
 
 import java.util.Scanner;
 
-public class Farenheit_para_Celsius{
-    public static void main(String[] args){
+public class Farenheit_para_Celsius {
+    public static void main(String[] args) {
         Scanner ler = new Scanner(System.in);
 
         Double Celsius, Farenheit;

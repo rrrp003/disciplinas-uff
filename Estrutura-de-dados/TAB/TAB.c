@@ -29,10 +29,42 @@ TAB *TAB_espelho(TAB *a){
     return (TAB_cria(a->info, TAB_espelho(a->dir), TAB_espelho(a->esq)));
 }
 
-TAB *TAB_maior(TAB *a){
-  
+TAB* retira_pares (TAB* a){
 }
+
+TAB *TAB_maior(TAB *a) {
+
+  if (!a) return a;
+
+  TAB *maior = a;
+
+  TAB *maior_esq = TAB_maior(a->esq);
+  TAB *maior_dir = TAB_maior(a->dir);
+
+  if (maior_esq != NULL && maior_esq->info > maior->info) {
+      maior = maior_esq;
+  }
+  if (maior_dir != NULL && maior_dir->info > maior->info) {
+      maior = maior_dir;
+  }
+  return maior;
+}
+
 TAB *TAB_menor(TAB *a){
+  if (!a) return a;
+
+  TAB *menor = a;
+
+  TAB *menor_esq = TAB_menor(a->esq);
+  TAB *menor_dir = TAB_menor(a->dir);
+
+  if ((menor_esq != NULL ) && (menor_esq->info < menor->info)) {
+      menor = menor_esq;
+  }
+  if ((menor_dir != NULL) && (menor_dir->info < menor->info)) {
+      menor = menor_dir;
+  }
+  return menor;
 }
 
 void TAB_imp_pre(TAB *a){
@@ -95,4 +127,39 @@ int TAB_altura(TAB *a){
   return maior(TAB_altura(a->esq), TAB_altura(a->dir)) + 1;
 }
 
+int igual (TAB* a1, TAB* a2){
+  if (a1 == NULL && a2 == NULL) {
+        return 1;
+  }
+  if (a1 == NULL || a2 == NULL) {
+      return 0;
+  }
+  if (a1->info != a2->info) {
+      return 0;
+  }
+  return (igual(a1->esq, a2->esq) && (a1->dir, a2->dir));
+}
 
+int nf(TAB *a){
+  if(!a) return 0;
+
+  if((!a->esq) && (!a->dir)) return 1;
+
+  return (nf(a->esq) + nf(a->dir));
+}
+
+int nf_opt(TAB *a){
+  if(!a) return 0;
+
+  if((!a->esq) && (!a->dir)) return 1;
+
+  int total_folhas = 0;
+
+  if (a->esq){
+    total_folhas += nf_opt(a->esq);
+  }
+  if (a->dir){
+    total_folhas += nf_opt(a->dir);
+  }
+  return total_folhas;
+}

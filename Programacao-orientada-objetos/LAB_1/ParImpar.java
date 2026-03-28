@@ -1,10 +1,10 @@
 
-package Lista1;
+package LAB_1;
 
 import java.util.Scanner;
 
 public class ParImpar {
-    public static void main(String [] args){
+    public static void main(String[] args) {
 
         Scanner ler = new Scanner(System.in);
 
@@ -12,11 +12,10 @@ public class ParImpar {
         System.out.printf("Digite um numero: ");
         num = ler.nextInt();
 
-        if (num % 2 == 0){
-                System.out.printf("O numero %d eh par ", num);
+        if (num % 2 == 0) {
+            System.out.printf("O numero %d eh par ", num);
 
-            }
-        else
+        } else
             System.out.printf("O numero %d eh impar ", num);
     }
 }

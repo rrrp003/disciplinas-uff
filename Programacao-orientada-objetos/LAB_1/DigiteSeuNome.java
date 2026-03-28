@@ -1,8 +1,9 @@
-package Lista1;
+package LAB_1;
+
 import java.util.Scanner;
 
-public class DigiteSeuNome{
-    public static void main(String[] args){
+public class DigiteSeuNome {
+    public static void main(String[] args) {
         Scanner ler = new Scanner(System.in);
         String nome;
 
