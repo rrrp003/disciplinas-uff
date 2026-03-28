@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 public class MenorMoedas {
     public static void main(String[] args) {
-        Scanner ler = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         int centavos, Moeda1real, Moeda50centavos, Moeda25centavos, Moeda10centavos, Moeda5centavos, Moeda1centavo;
 
         System.out.printf("Informe o quanto de dinheiro em centavos: ");
-        centavos = ler.nextInt();
+        centavos = scanner.nextInt();
 
         Moeda1real = centavos / 100;
         Moeda50centavos = (centavos % 100) / 50;
@@ -25,6 +25,7 @@ public class MenorMoedas {
         System.out.println("Moedas de 5 centavos: " + Moeda5centavos);
         System.out.println("Moedas de 1 centavo: " + Moeda1centavo);
 
+        scanner.close();
     }
     // se eh maior, igual a 100, divide por
 }

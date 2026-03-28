@@ -4,12 +4,15 @@ import java.util.Scanner;
 
 public class DigiteSeuNome {
     public static void main(String[] args) {
-        Scanner ler = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         String nome;
 
         System.out.print("Digite seu nome: ");
-        nome = ler.next();
+        nome = scanner.next();
 
         System.out.printf("Olá, %s! Bem-vindo ao Java!\n", nome);
+
+        scanner.close();
+
     }
 }
