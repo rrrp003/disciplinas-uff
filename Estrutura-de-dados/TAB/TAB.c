@@ -29,9 +29,6 @@ TAB *TAB_espelho(TAB *a){
     return (TAB_cria(a->info, TAB_espelho(a->dir), TAB_espelho(a->esq)));
 }
 
-TAB* retira_pares (TAB* a){
-}
-
 TAB *TAB_maior(TAB *a) {
 
   if (!a) return a;
@@ -148,7 +145,7 @@ int nf(TAB *a){
   return (nf(a->esq) + nf(a->dir));
 }
 
-int nf_opt(TAB *a){
+int nf_opt(TAB *a){ //- 2 chamadas (na hora eu achei relevante haha)
   if(!a) return 0;
 
   if((!a->esq) && (!a->dir)) return 1;
@@ -162,4 +159,12 @@ int nf_opt(TAB *a){
     total_folhas += nf_opt(a->dir);
   }
   return total_folhas;
+}
+
+int ni(TAB *a){
+  if (!a) return 0;
+
+  if((!a->esq) && (!a->dir)) return 0;
+  
+  return 1 + ni(a->esq) + ni(a->dir);
 }

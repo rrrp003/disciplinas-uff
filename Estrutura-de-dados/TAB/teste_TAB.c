@@ -12,7 +12,7 @@ int conta(TAB* a){
   return 1 + conta(a->esq) + conta(a->dir);
 }
 
-void aux(TAB* a, int* vet, int* apos){
+void aux(TAB* a, int* vet, int* pos){
   if(!a) return;
   aux(a->esq, vet, pos);
   aux(a->dir, vet, pos);
@@ -44,7 +44,7 @@ void exibe_menu() {
     printf(" 6. Preencher vetor em pos-ordem (ab2vet_pos)\n");
     printf(" 7. Exibir Maior e Menor no\n");
     printf(" 8. Exibir Altura da arvore\n");
-    printf(" 9. Exibir numero de folhas\n");
+    printf(" 9. Exibir numero de nos folhas e nos internos\n");
     printf(" 0. Sair\n");
     printf("================================================\n");
     printf("Escolha uma opcao: ");
@@ -158,6 +158,7 @@ int main(void){
 
           case 9:
               printf("\n=> Numero de folhas: %d\n", nf(a));
+              printf("\n=> Numero de nos internos: %d\n", ni(a));
               break;
 
           case 0:
