@@ -11,17 +11,26 @@ public class L3_analise_frase {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String frase = "";
+        int x = 0;
 
         System.out.printf("Digite uma frase ou uma palavra: ");
         frase = scanner.nextLine();
 
-        System.out.printf("o num total contando espaco: %d \n", frase.length());
-        System.out.printf("o num total sem contar espaco: %d \n", frase.trim().length());
+        // contando todos os caracteres
+        System.out.printf("O numero de caracteres na frase eh: %d\n", frase.length());
+        // contando todos os carteres (sem espaco)
+        System.out.printf("O numero de caracteres (sem espaco) na frase eh: %d\n", frase.replace(" ", "").length());
 
         System.out.printf("A frase completa em maiusculo %s: \n", frase.toUpperCase());
         System.out.printf("A frase completa em maiusculo %s: \n", frase.toLowerCase());
 
-        // System.out.printf("A quantidade de vezes que a letra (a) aparece: %d\n", );
+        // usando string
+        for (int i = 0; i < frase.length(); i++) {
+            char letra = frase.charAt(i);
+            if (letra == 'a')
+                x++;
+        }
+        System.out.printf("o num de letras 'a' eh: %d\n", x);
 
         scanner.close();
     }
