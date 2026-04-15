@@ -21,6 +21,7 @@ public class L4_e3 {
         p = scanner.nextInt();
         if ((p < 0) || (p >= n)) {
             System.out.printf("Posicao invalida\n");
+            scanner.close();
             return;
         }
 
