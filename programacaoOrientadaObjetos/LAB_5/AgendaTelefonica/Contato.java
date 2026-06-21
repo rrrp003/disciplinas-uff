@@ -1,27 +1,25 @@
 package LAB_5.AgendaTelefonica;
 
 public class Contato {
-    // atributos
-    String nome, endereco;
-    int telefone;
+    // Atributos privados (Encapsulamento)
+    private String nome;
+    private String endereco;
+    private String telefone; 
 
-    // metodos
-
-    public Contato(String nome, String endereco, int telefone) {
+    // Construtor
+    public Contato(String nome, String endereco, String telefone) {
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
     }
 
-    public void editarNome(String novoNome) {
-        this.nome = novoNome;
-    }
+    // Getters para permitir a leitura na classe Agenda
+    public String getNome() { return nome; }
+    public String getEndereco() { return endereco; }
+    public String getTelefone() { return telefone; }
 
-    public void editarEndereco(String novoEndereco) {
-        this.endereco = novoEndereco;
-    }
-
-    public void editarTelefone(int novoTelefone) {
-        this.telefone = novoTelefone;
-    }
+    // Setters (seus métodos de edição)
+    public void editarNome(String novoNome) { this.nome = novoNome; }
+    public void editarEndereco(String novoEndereco) { this.endereco = novoEndereco; }
+    public void editarTelefone(String novoTelefone) { this.telefone = novoTelefone; }
 }

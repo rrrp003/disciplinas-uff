@@ -2,10 +2,9 @@ package LAB_5.AgendaTelefonica;
 
 import java.util.ArrayList;
 
-// atributos
-
 public class Agenda {
-    ArrayList<Contato> contatos = new ArrayList<>();
+    // atributos
+    private ArrayList<Contato> contatos;
 
     // metodos
     public Agenda() {
@@ -20,11 +19,12 @@ public class Agenda {
         contatos.remove(contato);
     }
 
-    public void listagemContaos() {
+    public void listagemContatos() {
         for (Contato i : contatos) {
-            System.out.println(i.nome);
-            System.out.println(i.endereco);
-            System.out.println(i.telefone);
+            System.out.println("Nome: " + i.getNome());
+            System.out.println("Endereço: " + i.getEndereco());
+            System.out.println("Telefone: " + i.getTelefone());
+            System.out.println("---------");  
         }
     }
 }
