@@ -4,7 +4,7 @@ public class Livro {
     //atributos
     private String titulo;
     private String autor;
-    private String Genero;
+    private String genero;
     private int anoPublicacao;
 
     //metodos
@@ -12,7 +12,7 @@ public class Livro {
     public Livro(String titulo, String autor, String genero, int anoPublicacao) {
         this.titulo = titulo;
         this.autor = autor;
-        this.Genero = Genero;
+        this.genero = genero;
         this.anoPublicacao = anoPublicacao;
     }
     
@@ -33,11 +33,11 @@ public class Livro {
     }
 
     public String getGenero() {
-        return Genero;
+        return genero;
     }
 
-    public void setGenero(String Genero) {
-        this.Genero = Genero;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
     public int getAnoPublicacao() {
