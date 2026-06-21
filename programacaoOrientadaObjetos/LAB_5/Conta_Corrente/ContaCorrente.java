@@ -1,6 +1,6 @@
 package LAB_5.Conta_Corrente;
 
-public class ContaCorrente {
+    public class ContaCorrente {
 
     private float saldo;
 
