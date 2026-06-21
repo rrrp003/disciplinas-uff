@@ -1,4 +1,4 @@
-package LAB_5.AgendaTelefonica;
+package LAB_5.Agenda_Telefonica;
 
 public class Contato {
     // Atributos privados (Encapsulamento)
