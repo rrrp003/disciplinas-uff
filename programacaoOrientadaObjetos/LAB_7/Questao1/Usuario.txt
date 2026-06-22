@@ -1,0 +1,8 @@
+ Usuario (nome, senha)
+    |
+    |__Cliente (dados cadastrais)
+    |
+    |__Funcionario (métodos de venda)
+        |
+        |__Gerente (método de fechamento de caixa)
+
