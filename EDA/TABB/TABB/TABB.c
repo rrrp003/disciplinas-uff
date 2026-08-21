@@ -102,3 +102,10 @@ TABB *TABB_retira(TABB *a, int info){
   }
   return a; 
 }
+
+ int *maioresN(TABB *a, int N, int *tam_vet){
+    if (!a) return 0;
+
+    // if(a->info > n)
+    
+ }

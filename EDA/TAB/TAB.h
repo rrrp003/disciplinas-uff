@@ -17,9 +17,10 @@ TAB *TAB_inicializa(void);
 TAB *TAB_cria(int raiz, TAB *esq, TAB *dir);
 TAB *TAB_busca(TAB *a, int elem);
 TAB *TAB_copia(TAB *a);
-TAB *TAB_espelho(TAB *a);
+// TAB *TAB_espelho(TAB *a);
 TAB *TAB_maior(TAB *a);
 TAB *TAB_menor(TAB *a);
+// TAB* retira_pares (TAB* arv);
 
 void TAB_imp_pre(TAB *a);
 void TAB_imp_pos(TAB *a);
@@ -30,8 +31,7 @@ void TAB_libera(TAB *a);
 int TAB_altura(TAB *a);
 int igual (TAB* a1, TAB* a2);
 int nf(TAB *a);
-int nf_opt(TAB *a);
-int ni(TAB *a);
-
+// int ni(TAB *a);
+int misc1(TAB *a);
 //TAB_cor abaixo
-void colore(TAB_cor *a); //0 sem cor //1 vermelho //2 preto
+// void colore(TAB_cor *a); //0 sem cor //1 vermelho //2 preto

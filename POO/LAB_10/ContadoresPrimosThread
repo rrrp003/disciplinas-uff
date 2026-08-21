@@ -1,0 +1,32 @@
+public class ContadorPrimosThread extends Thread {
+    private int inicio;
+    private int fim;
+    private int quantidadePrimos;
+
+    public ContadorPrimosThread(int inicio, int fim) {
+        this.inicio = inicio;
+        this.fim = fim;
+        this.quantidadePrimos = 0;
+    }
+
+    @Override
+    public void run() {
+        for (int i = inicio; i <= fim; i++) {
+            if (ehPrimo(i)) {
+                quantidadePrimos++;
+            }
+        }
+    }
+
+    private boolean ehPrimo(int numero) {
+        if (numero <= 1) return false;
+        for (int i = 2; i * i <= numero; i++) {
+            if (numero % i == 0) return false;
+        }
+        return true;
+    }
+
+    public int getQuantidadePrimos() {
+        return quantidadePrimos;
+    }
+}
