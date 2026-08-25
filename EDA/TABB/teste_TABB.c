@@ -27,6 +27,10 @@ int main(void){
     // Captura o vetor retornado para imprimir
     int *vetor = maioresN(a, 5, &tam);
 
+
+
+    printf("O maior valor eh: %d \n", Maior(a)->info);
+
     printf("\n--- Elementos maiores que 5 (%d encontrados) ---\n", tam);
     if (vetor != NULL) {
         for (int i = 0; i < tam; i++) {
@@ -38,6 +42,7 @@ int main(void){
         printf("Nenhum elemento encontrado.\n");
     }
 
+   
     TABB_libera(a);
     return 0;
 }

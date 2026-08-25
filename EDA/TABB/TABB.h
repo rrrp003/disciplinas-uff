@@ -21,4 +21,6 @@ TABB *TABB_busca(TABB *a, int elem);
 TABB *TABB_insere(TABB *a, int elem);
 TABB *TABB_retira(TABB *a, int info);
 
+TABB *Maior(TABB *a);
+
 int *maioresN(TABB *a, int N, int *tam_vet);

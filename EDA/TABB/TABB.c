@@ -103,6 +103,14 @@ TABB *TABB_retira(TABB *a, int info){
   return a; 
 }
 
+TABB *Maior(TABB *a){
+  if (!a) return NULL;
+  
+  while(a) a = a->dir;
+  
+  return a;
+}
+
 int conta_MaioresN(TABB* a, int N){
   if (!a) return 0;
 
