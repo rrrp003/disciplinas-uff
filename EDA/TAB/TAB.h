@@ -28,6 +28,8 @@ void TAB_imp_sim(TAB *a);
 void TAB_imp_ident(TAB *a);
 void TAB_libera(TAB *a);
 
+
+float *media(TAB *a, int *tam_vet);
 int TAB_altura(TAB *a);
 int igual (TAB* a1, TAB* a2);
 int nf(TAB *a);

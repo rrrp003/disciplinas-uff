@@ -103,9 +103,41 @@ TABB *TABB_retira(TABB *a, int info){
   return a; 
 }
 
- int *maioresN(TABB *a, int N, int *tam_vet){
-    if (!a) return 0;
+int conta_MaioresN(TABB* a, int N){
+  if (!a) return 0;
 
-    // if(a->info > n)
-    
- }
+  if (a->info > N) {
+    return 1 + conta_MaioresN(a->esq, N) + conta_MaioresN(a->dir, N);
+  } 
+  return conta_MaioresN(a->dir, N);
+}
+
+void preenche_vet(TABB *a, int *vet, int N, int *pos){
+  if (!a) return;
+
+  if(a->info > N) {
+    preenche_vet(a->esq, vet, N, pos);
+    vet[(*pos)] = a->info;
+    (*pos) ++;
+    preenche_vet(a->dir, vet, N, pos);
+  }
+  else {
+    preenche_vet(a->dir, vet, N, pos);
+  }
+}
+
+int *maioresN(TABB *a, int N, int *tam_vet){
+  
+  int len = conta_MaioresN(a, N);
+  (* tam_vet) = len;
+
+  if (len == 0) return NULL;
+  
+  int *vet =(int*) malloc(sizeof(int) * len);
+  
+  int pos = 0;
+
+  preenche_vet(a, vet, N, &pos);
+
+  return vet;
+}
