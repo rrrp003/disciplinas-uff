@@ -28,7 +28,7 @@ void TAB_imp_sim(TAB *a);
 void TAB_imp_ident(TAB *a);
 void TAB_libera(TAB *a);
 
-int maior_nivel(TAB *a, int N, int M);
+TAB* maior_nivel(TAB *a, int N, int M);
 
 float *media(TAB *a, int *tam_vet);
 int TAB_altura(TAB *a);
