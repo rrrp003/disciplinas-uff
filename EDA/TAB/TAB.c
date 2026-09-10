@@ -1,4 +1,4 @@
-#include "TAB.h"
+  #include "TAB.h"
 
 TAB *TAB_inicaliza(void){
   return NULL;
@@ -164,3 +164,42 @@ int misc1(TAB *a){
   return aux_misc(a, 0);
 }
 
+void acumula(TAB *a, float *somas, int *qtd, int nivel) {
+    if (!a) return;
+
+    somas[nivel] += a->info;
+    qtd[nivel]++;
+
+    acumula(a->esq, somas, qtd, nivel + 1);
+    acumula(a->dir, somas, qtd, nivel + 1);
+}
+
+float *media(TAB *a, int *tam_vet) {
+    int h = altura(a);
+    *tam_vet = h;
+    if (h == 0) return NULL;
+
+    float *somas = (float *) malloc(sizeof(float) * h);
+    int *qtd = (int *) malloc(sizeof(int) * h);
+    float *resultado = (float *) malloc(sizeof(float) * h);
+
+    for (int i = 0; i < h; i++) {
+        somas[i] = 0.0;
+        qtd[i] = 0;
+    }
+
+    acumula(a, somas, qtd, 0);
+
+    for (int i = 0; i < h; i++) {
+        resultado[i] = somas[i] / qtd[i];
+    }
+
+    free(somas);
+    free(qtd);
+
+    return resultado;
+}
+
+int maior_nivel(TAB *a, int N, int M) {
+    
+}
