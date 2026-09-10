@@ -164,6 +164,47 @@ int misc1(TAB *a){
   return aux_misc(a, 0);
 }
 
-TAB* maior_nivel(TAB *a, int N, int M){
-  
+int soma_caminho(TAB *a, int N){
+  if (!a) return 0;
+
+  int total = 0;
+
+  if (a->info == N) {
+      total++;
+  }
+  total += caminhos_a_partir_do_no(a->esq, N - a->info);
+  total += caminhos_a_partir_do_no(a->dir, N - a->info);
+
+  return total;
+}
+
+int quant_caminhos(TAB *a, int N){
+  if (!a) return 0;
+
+  int no_atual = soma_caminhos(a, N);
+
+  int esq = quant_caminhos(a->esq, N);
+
+  int dir = quant_caminhos(a->dir, N);
+
+  return no_atual + esq + dir;
+}
+
+TAB *maior_nivel(TAB *a, int N, int M) {
+  if (!a) return NULL;
+
+  if (a->info == N || a->info == M) return a;
+
+  TAB *esq = maior_nivel(a->esq, N, M);
+  TAB *dir = maior_nivel(a->dir, N, M);
+
+  if (esq && dir ) {
+      return a;
+  }
+
+  if (esq) {
+      return esq;
+  } else {
+      return dir;
+  }
 }
