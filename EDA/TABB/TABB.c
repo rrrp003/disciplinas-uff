@@ -77,6 +77,7 @@ TABB *TABB_insere(TABB *a, int elem){
 
 TABB *TABB_retira(TABB *a, int info){
   if(!a) return a;
+
   if(info < a->info) 
     a->esq = TABB_retira(a->esq, info);
   else if(info > a->info) 
@@ -103,12 +104,38 @@ TABB *TABB_retira(TABB *a, int info){
   return a; 
 }
 
+TABB *Menor_rec(TABB *a){
+  if (!a) return NULL;
+  if (!a->esq) return a;
+
+  Maior_rec(a->esq);
+}
+
+TABB *Maior_rec(TABB *a){
+  if (!a) return NULL;
+  if (!a->dir) return a;
+
+  Maior_rec(a->dir);
+}
+
 TABB *Maior(TABB *a){
   if (!a) return NULL;
   
-  while(a) a = a->dir;
+  while(a->dir) a = a->dir;
   
   return a;
+}
+
+TABB *retira_impares_v2(TABB *a) {
+    if (!a) return NULL;
+
+    a->esq = retira_impares(a->esq);
+    a->dir = retira_impares(a->dir);
+
+    if (a->info % 2 != 0) {
+        a = TABB_retira(a, a->info); 
+      }
+    return a;
 }
 
 int conta_MaioresN(TABB* a, int N){

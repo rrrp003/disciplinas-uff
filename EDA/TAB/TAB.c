@@ -164,42 +164,47 @@ int misc1(TAB *a){
   return aux_misc(a, 0);
 }
 
-void acumula(TAB *a, float *somas, int *qtd, int nivel) {
-    if (!a) return;
+int soma_caminho(TAB *a, int N){
+  if (!a) return 0;
 
-    somas[nivel] += a->info;
-    qtd[nivel]++;
+  int total = 0;
 
-    acumula(a->esq, somas, qtd, nivel + 1);
-    acumula(a->dir, somas, qtd, nivel + 1);
+  if (a->info == N) {
+      total++;
+  }
+  total += caminhos_a_partir_do_no(a->esq, N - a->info);
+  total += caminhos_a_partir_do_no(a->dir, N - a->info);
+
+  return total;
 }
 
-float *media(TAB *a, int *tam_vet) {
-    int h = altura(a);
-    *tam_vet = h;
-    if (h == 0) return NULL;
+int quant_caminhos(TAB *a, int N){
+  if (!a) return 0;
 
-    float *somas = (float *) malloc(sizeof(float) * h);
-    int *qtd = (int *) malloc(sizeof(int) * h);
-    float *resultado = (float *) malloc(sizeof(float) * h);
+  int no_atual = soma_caminhos(a, N);
 
-    for (int i = 0; i < h; i++) {
-        somas[i] = 0.0;
-        qtd[i] = 0;
-    }
+  int esq = quant_caminhos(a->esq, N);
 
-    acumula(a, somas, qtd, 0);
+  int dir = quant_caminhos(a->dir, N);
 
-    for (int i = 0; i < h; i++) {
-        resultado[i] = somas[i] / qtd[i];
-    }
-
-    free(somas);
-    free(qtd);
-
-    return resultado;
+  return no_atual + esq + dir;
 }
 
-int maior_nivel(TAB *a, int N, int M) {
-    
+TAB *maior_nivel(TAB *a, int N, int M) {
+  if (!a) return NULL;
+
+  if (a->info == N || a->info == M) return a;
+
+  TAB *esq = maior_nivel(a->esq, N, M);
+  TAB *dir = maior_nivel(a->dir, N, M);
+
+  if (esq && dir ) {
+      return a;
+  }
+
+  if (esq) {
+      return esq;
+  } else {
+      return dir;
+  }
 }
