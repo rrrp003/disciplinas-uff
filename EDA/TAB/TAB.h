@@ -32,6 +32,7 @@ TAB* maior_nivel(TAB *a, int N, int M);
 
 float *media(TAB *a, int *tam_vet);
 int TAB_altura(TAB *a);
+int TAB_altura_v2(TAB *a);
 int igual (TAB* a1, TAB* a2);
 int nf(TAB *a);
 // int ni(TAB *a);

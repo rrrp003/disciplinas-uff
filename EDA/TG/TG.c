@@ -174,36 +174,11 @@ int nao_tem_mesma_cor(TG *g){
 }
 
 TLSE *caminho_rec(TG *g, int x, int y, TLSE **visitados) {
-    if (TLSE_busca(*visitados, x)) return NULL;
-
-    *visitados = TLSE_insere(*visitados, x);
-
-    if (x == y) {
-        return TLSE_insere(NULL, y);
-    }
-
-    TG *no = TG_busca_no(g, x);
-    if (!no) return NULL;
-    TVIZ *v = no->prim_viz;
-    while (v) {
-        TLSE *cam = caminho_rec(g, v->id_viz, y, visitados);
-        if (cam) {
-            return TLSE_insere(cam, x);
-        }
-        v = v->prox_viz;
-    }
-    return NULL;
-}
+   
+} 
 
 TLSE *caminho(TG *g, int x, int y) {
-    if (!g || !TG_busca_no(g, x) || !TG_busca_no(g, y)) return NULL;
-
-    TLSE *visitados = NULL;
-    TLSE *resp = caminho_rec(g, x, y, &visitados);
-
-    TLSE_libera(visitados);
-
-    return resp;
+    
 }
 
 TG* TG_retira_no(TG *g, int no){

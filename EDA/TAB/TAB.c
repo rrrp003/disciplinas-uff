@@ -136,6 +136,24 @@ int nf(TAB *a){
   return nf(a->esq) + nf(a->dir);
 }
 
+int TAB_altura_v2(TAB *a){
+  int maior = 1, maior_esq = 0, maior_dir = 0;
+
+  if (!a) return 0;
+
+  if (a->esq){
+    maior_esq = altura(a->esq) + 1;
+    if (maior < maior_esq)  maior = maior_esq;
+  }
+  if (a->dir){
+    maior_dir = altura(a->dir) + 1;
+    if (maior < maior_dir)  maior = maior_dir;
+  }
+
+  return maior;
+}
+
+
 int TAB_altura(TAB *a){
   if (!a) return -1;
   
