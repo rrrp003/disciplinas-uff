@@ -64,6 +64,17 @@ TAB *TAB_maior(TAB *a){
   }
 }*/
 
+int eh_espelho(TAB *e, TAB *d) {
+    if (!e && !d) return 1; 
+    if (!e || !d) return 0; 
+
+    return (e->info == d->info) && eh_espelho(e->esq, d->dir) && eh_espelho(e->dir, d->esq);
+}
+
+int eh_simetrica(TAB *a) {
+    if (!a) return 1;
+    return eh_espelho(a->esq, a->dir);
+}
 void imp_aux(TAB *a, int andar){
   int j;
   if(a){
@@ -153,7 +164,6 @@ int TAB_altura_v2(TAB *a){
   return maior;
 }
 
-
 int TAB_altura(TAB *a){
   if (!a) return -1;
   
@@ -208,6 +218,29 @@ int quant_caminhos(TAB *a, int N){
   return no_atual + esq + dir;
 }
 
+int nivel(TAB* a, int k){
+  if (!a) return -1;  
+   
+}
+
+int eh_TABB(TAB* a){
+  if (!a) return 0;
+
+  int x;
+
+  if (a->esq && a->esq->info >= a->info) return 0;
+  else if (a->esq) x = eh_TABB(a->esq);
+
+  if(x == 0) return 0;
+
+  if (a->dir && a->dir->info <= a->info) return 0;
+  else if (a->dir) x = ehTABB(a->dir);
+
+  if (x == 0) return 0;
+
+  return 1;
+}
+
 TAB *maior_nivel(TAB *a, int N, int M) {
   if (!a) return NULL;
 
@@ -225,4 +258,8 @@ TAB *maior_nivel(TAB *a, int N, int M) {
   } else {
       return dir;
   }
+}
+
+int mesmo_nivel(TAB *a){
+  
 }
