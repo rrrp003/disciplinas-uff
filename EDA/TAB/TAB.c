@@ -190,7 +190,8 @@ int quant_caminhos(TAB *a, int N){
   return no_atual + esq + dir;
 }
 
-TAB *maior_nivel(TAB *a, int N, int M) {
+TAB *maior_nivel(TAB *a, int N, int M) { 
+
   if (!a) return NULL;
 
   if (a->info == N || a->info == M) return a;
@@ -207,4 +208,40 @@ TAB *maior_nivel(TAB *a, int N, int M) {
   } else {
       return dir;
   }
+}
+
+void aux_TAB_media(TAB *a, int* qtd, float* soma, int nv){
+  if(!a) return;
+
+  soma[nv] += a->info;
+  qtd[nv]++;
+
+  aux_TAB_media(a->esq, qtd, soma, nv+1);
+  aux_TAB_media(a->dir, qtd, soma, nv+1);
+}
+
+float *TAB_media(TAB *a, int *tam_vet){
+  int len = TAB_altura(a) +1;
+  *tam_vet = len;
+  if (!a ||len == 0) return NULL;
+
+
+  float *soma = (float*) malloc (sizeof(float)*len);
+  int *qtd = (int*) malloc (sizeof(int)*len);
+  float *resp = (float*) malloc (sizeof(float)*len);
+
+  for(int i = 0; i < len; i++){
+    soma[i] = 0;
+    qtd[i] = 0;
+  }
+
+  aux_TAB_media(a, qtd, soma, 0);
+
+  for(int i = 0; i < len; i++){
+    resp[i] = soma[i] / (float)qtd[i];
+  }
+  free(soma);
+  free(qtd);
+
+  return resp;
 }
