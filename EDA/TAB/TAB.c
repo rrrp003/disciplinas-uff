@@ -164,30 +164,16 @@ int misc1(TAB *a){
   return aux_misc(a, 0);
 }
 
-int soma_caminho(TAB *a, int N){
-  if (!a) return 0;
-
-  int total = 0;
-
-  if (a->info == N) {
-      total++;
-  }
-  total += caminhos_a_partir_do_no(a->esq, N - a->info);
-  total += caminhos_a_partir_do_no(a->dir, N - a->info);
-
-  return total;
-}
-
 int quant_caminhos(TAB *a, int N){
-  if (!a) return 0;
+    if (!a) return 0;
 
-  int no_atual = soma_caminhos(a, N);
-
-  int esq = quant_caminhos(a->esq, N);
-
-  int dir = quant_caminhos(a->dir, N);
-
-  return no_atual + esq + dir;
+    if (!a->esq && !a->dir) {
+        if (a->info == N) return 1;
+        return 0;
+    }
+    int saldo = N - a->info;
+    
+    return quant_caminhos(a->esq, saldo) + quant_caminhos(a->dir, saldo);
 }
 
 TAB *maior_nivel(TAB *a, int N, int M) { 
