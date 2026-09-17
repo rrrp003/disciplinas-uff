@@ -186,115 +186,38 @@ int nao_tem_mesma_cor(TG *g){
   } 
   return 1;
 }
- 
-TLSE *aux_caminho_rec(TG *g, int x, int y, TLSE **visitados){
-  if (TLSE_busca(visitados ,g->id_no)) return NULL;
 
-  *visitados = TLSE_insere(*visitados, x);
+TLSE *caminho_rec(TG *g, int x, int y, TLSE **visitados) {
+    if (TLSE_busca(*visitados, x)) return NULL;
 
-  if (x == y) TLSE_insere(NULL, y);
+    *visitados = TLSE_insere(*visitados, x);
 
-  TG *no = TG_busca_no(g, x);
-  if (!no) return NULL;
+    if (x == y) {
+        return TLSE_insere(NULL, y);
+    }
 
-  TVIZ* v = no->prim_viz;
-  while(v){
-    TLSE *cam = aux_caminho_rec(g, v->id_viz, y, visitados); // 
-    if(cam) return TLSE_insere(cam, x); // inserção do final para o inicio 
-    
-    v = v->prox_viz;
-  }
-
-  return NULL;
-}
-
-TLSE *caminho(TG *g, int x, int y) {
-    if (!g || !TG_busca_no(g,x) || !TG_busca_no(g, y)) return NULL;
-    
-  TLSE* visitados = NULL;
-
-  TLSE* resp = aux_caminho_rec(g , x, y, &visitados);
-
-  TLSE_libera(visitados);
-
-  return resp;
-
-
-}
-
-int aux_conta_caminho(TG* g, int x,int y, TLSE ** visitados){
-  if (TLSE_busca(*visitados, x)) return 0;
-
-  *visitados = TLSE_insere(*visitados, x);
-
-  if (x == y) {
-    TLSE_retira(*visitados, x);
-    return 1;
-  }
-
-  TG* no = TG_busca_no(g, x);
-  if(!no) return 0;
-
-  int total_cam = 0;
-
-  TVIZ* v = no->prim_viz;
-  while(v){
-    total_cam += aux_conta_caminho(g, v->id_viz, y, visitados);
-    
-    v = v->prox_viz;
-  }
-  *visitados = TLSE_retira(*visitados, x);
-
-  return total_cam;
-}
-
-int conta_caminho(TG *g, int x, int y){
-  TLSE *visitados = NULL;
-
-  int resp = aux_conta_caminho(g, x, y, &visitados);
-
-  TLSE_libera(visitados);
-
-  return resp;
-}
-
-int aux_eh_ciclico(TG *g, int atual, int pai, TLSE **visitados) {
-    *visitados = TLSE_insere(*visitados, atual);
-    TG *no = TG_busca_no(g, atual);
-    if (!no) return 0;
-
+    TG *no = TG_busca_no(g, x);
+    if (!no) return NULL;
     TVIZ *v = no->prim_viz;
     while (v) {
-        if (v->id_viz != pai) {
-            if (TLSE_busca(*visitados, v->id_viz)) {
-                return 1;
-            }
-            if (aux_eh_ciclico(g, v->id_viz, atual, visitados)) {
-                return 1;
-            }
+        TLSE *cam = caminho_rec(g, v->id_viz, y, visitados);
+        if (cam) {
+            return TLSE_insere(cam, x);
         }
         v = v->prox_viz;
     }
-    return 0;
+    return NULL;
 }
 
-int eh_ciclico(TG *g) {
-    if (!g) return 0;
-    TLSE *visitados = NULL;
-    TG *aux = g;
+TLSE *caminho(TG *g, int x, int y) {
+    if (!g || !TG_busca_no(g, x) || !TG_busca_no(g, y)) return NULL;
 
-    while (aux) {
-        if (!TLSE_busca(visitados, aux->id_no)) {
-            if (aux_eh_ciclico(g, aux->id_no, -1, &visitados)) {
-                TLSE_libera(visitados);
-                return 1;
-            }
-        }
-        aux = aux->prox_no;
-    }
+    TLSE *visitados = NULL;
+    TLSE *resp = caminho_rec(g, x, y, &visitados);
 
     TLSE_libera(visitados);
-    return 0;
+
+    return resp;
 }
 
 int valida_grau(TG* g){

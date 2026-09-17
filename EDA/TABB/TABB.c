@@ -138,34 +138,6 @@ TABB *retira_impares_v2(TABB *a) {
     return a;
 }
 
-TABB *retira_impares(TABB *a) {
-    if (!a) return NULL;
-
-    a->esq = retira_impares(a->esq);
-    a->dir = retira_impares(a->dir);
-
-    if (a->info % 2 != 0) {
-        if (!a->esq && !a->dir) {
-            free(a);
-            return NULL;
-        }
-        else if (!a->esq) {
-            TABB *temp = a->dir; 
-            free(a);
-            return temp;
-        }
-        else if (!a->dir) {
-            TABB *temp = a->esq; 
-            free(a);  
-            return temp;
-        }
-        else {
-          
-        }
-    }
-    return a;
-}
-
 int conta_maioresN(TABB *a, int n){
   if(!a) return 0;
 

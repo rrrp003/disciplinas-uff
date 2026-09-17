@@ -24,5 +24,5 @@ TABB *TABB_retira(TABB *a, int info);
 TABB *Maior(TABB *a);
 TABB *Maior_rec(TABB *a);
 TABB *Menor_rec(TABB *a);
-
+TABB *retira_impares_v2(TABB *a);
 int *maioresN(TABB *a, int N, int *tam_vet);
