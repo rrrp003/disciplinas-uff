@@ -40,30 +40,6 @@ TAB *TAB_maior(TAB *a){
    return maior; 
  }
 
-/*TAB* retira_pares (TAB* arv){
-  if (!arv) return NULL;
-
-  TAB *aux = arv;
-
-  arv->esq = retira_pares(arv->esq);
-  arv->dir = retira_pares(arv->dir);
-  
-  if (arv->info % 2 == 0) {
-    if (!arv->esq && !arv->dir){
-      free(arv);
-      return NULL;
-    }
-    else if(!arv->esq){
-      free(arv);
-      return arv->dir;
-    }
-    else if(!arv->dir){
-      free(arv);
-      return arv->esq;
-    }
-  }
-}*/
-
 int eh_espelho(TAB *e, TAB *d) {
     if (!e && !d) return 1; 
     if (!e || !d) return 0; 
@@ -204,6 +180,7 @@ int quant_caminhos(TAB *a, int N){
     return quant_caminhos(a->esq, saldo) + quant_caminhos(a->dir, saldo);
 }
 
+
 int nivel(TAB* a, int k){
   if (!a) return -1;  
    
@@ -227,7 +204,7 @@ int eh_TABB(TAB* a){
   return 1;
 }
 
-TAB *maior_nivel(TAB *a, int N, int M) { 
+TAB *maior_nivel(TAB *a, int N, int M) {
 
   if (!a) return NULL;
 
@@ -246,3 +223,38 @@ TAB *maior_nivel(TAB *a, int N, int M) {
       return dir;
   }
 }
+
+void aux_TAB_media(TAB *a, int* qtd, float* soma, int nv){
+  if(!a) return;
+
+  soma[nv] += a->info;
+  qtd[nv]++;
+
+  aux_TAB_media(a->esq, qtd, soma, nv+1);
+  aux_TAB_media(a->dir, qtd, soma, nv+1);
+}
+
+float *TAB_media(TAB *a, int *tam_vet){
+  int len = TAB_altura(a) +1;
+  *tam_vet = len;
+  if (!a ||len == 0) return NULL;
+
+
+  float *soma = (float*) malloc (sizeof(float)*len);
+  int *qtd = (int*) malloc (sizeof(int)*len);
+  float *resp = (float*) malloc (sizeof(float)*len);
+
+  for(int i = 0; i < len; i++){
+    soma[i] = 0;
+    qtd[i] = 0;
+  }
+
+  aux_TAB_media(a, qtd, soma, 0);
+
+  for(int i = 0; i < len; i++){
+    resp[i] = soma[i] / (float)qtd[i];
+  }
+  free(soma);
+  free(qtd);
+
+  return resp;
