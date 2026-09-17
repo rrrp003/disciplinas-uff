@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <TLSE.h>
+#include <string.h>
 
 typedef struct viz {
 	int id_viz;
@@ -10,6 +11,7 @@ typedef struct viz {
 typedef struct grafo{
 	int id_no;	
 	int cor;
+	char *nome;
 	TVIZ *prim_viz;
 	struct grafo *prox_no;
 }TG;

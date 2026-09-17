@@ -296,3 +296,80 @@ int eh_ciclico(TG *g) {
     TLSE_libera(visitados);
     return 0;
 }
+
+int valida_grau(TG* g){
+  while(g){
+    g = g->prox_no;
+    TVIZ *v = g->prim_viz;
+    int x = 0;
+    while(v){
+      x++;
+      if(x > 3) return 0;
+      v = v->prox_viz;
+    }  
+    g = g->prox_no;
+  }
+  
+  return 1;
+}
+
+int teste (TG *g){
+  if(!g) return 0;
+
+  if(!valida_grau(g)) return 0;
+
+  if ( eh_ciclico(g) ) return 0;
+
+  return 1;
+}
+
+TG *busca_no_nome(TG *g, char* nome){
+  if(!g) return NULL;
+
+  TG* p = g;
+
+  while(p){
+    if (strcmp(nome, p->nome) == 0) return p;
+    p = p->prox_no;
+  }
+  return NULL;
+}
+
+int conta_viz(TG *g){
+  int viz = 0;
+  TVIZ* v = g->prim_viz;
+  while (v){
+    viz++;
+    v = v->prox_viz;
+  }
+  return viz;
+}
+
+int numero_seguidos(TG *g, char *nome){
+  TG *p = busca_no_nome(g, nome);
+  if (!p) return 0;
+
+  return conta_viz(p);
+}
+
+int numero_seguidores(TG *g, char *nome) {
+  TG *alvo = busca_no_nome(g, nome);
+  if (!alvo) return 0; // Pessoa não existe no grafo
+
+  int seguidores = 0;
+  TG *p = g;
+
+  while (p) {
+    TVIZ *v = p->prim_viz;
+    while (v) {
+      if (v->id_viz == alvo->id_no) { 
+        seguidores++;
+        //printar
+        break; 
+      }
+      v = v->prox_viz;
+    }
+    p = p->prox_no;
+  }
+  return seguidores;
+}
