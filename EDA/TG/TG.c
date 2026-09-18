@@ -188,11 +188,11 @@ int nao_tem_mesma_cor(TG *g){
 }
  
 TLSE *aux_caminho_rec(TG *g, int x, int y, TLSE **visitados){
-  if (TLSE_busca(visitados ,g->id_no)) return NULL;
+  if (TLSE_busca(*visitados ,g->id_no)) return NULL;
 
   *visitados = TLSE_insere(*visitados, x);
 
-  if (x == y) TLSE_insere(NULL, y);
+  if (x == y) return TLSE_insere(NULL, y);
 
   TG *no = TG_busca_no(g, x);
   if (!no) return NULL;
